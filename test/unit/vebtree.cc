@@ -52,7 +52,7 @@
 int
 main()
 {
-	VebTree tree(32);
+	VebTree<32> tree;
 	std::set<uint32_t> set;
 	const size_t count = 100000;
 

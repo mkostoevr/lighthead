@@ -15,27 +15,29 @@
  * - get precedessor: O(log(W))
  * - get min: O(1)
  * - get max: O(1)
+ *
+ * @param W power of max value, 32 for uint32.
  */
+template<unsigned W>
 class VebTree {
-	/* W power of max value, 32 for uint32. */
-	const uint64_t W;
+	using Child = VebTree<W / 2>;
+
 	/* Min value, not contained in m_children. */
 	std::optional<uint64_t> m_min;
 	/* Max value, not contained in m_children. */
 	std::optional<uint64_t> m_max;
 	/* Up to 2 ^ (W / 2) subtrees. */
-	std::vector<std::unique_ptr<VebTree>> m_children;
+	std::vector<std::unique_ptr<Child>> m_children;
 	/* Auxiliary tree. */
-	std::unique_ptr<VebTree> m_aux;
+	std::unique_ptr<Child> m_aux;
 
 public:
-	VebTree(int W)
-	: W(W)
-	, m_children(1ULL << (W / 2))
+	VebTree()
+	: m_children(1ULL << (W / 2))
 	{
 		assert(W >= 1);
 		if (W > 1)
-			m_aux = std::make_unique<VebTree>(W / 2);
+			m_aux = std::make_unique<Child>();
 	}
 
 	bool
@@ -111,7 +113,7 @@ public:
 
 		/* Create a corresponding child if it does not exist. */
 		if (!m_children[h]) {
-			m_children[h] = std::make_unique<VebTree>(W / 2);
+			m_children[h] = std::make_unique<Child>();
 
 			/* Mark that the child is not empty anymore. */
 			m_aux->insert(h);
@@ -146,9 +148,9 @@ public:
 			}
 
 			/* Get new min element from children. */
-			uint64_t h = *m_aux->m_min;
+			uint64_t h = *m_aux->min();
 			assert(m_children[h] != nullptr);
-			*m_min = concat(*m_children[h]->m_min, h);
+			*m_min = concat(*m_children[h]->min(), h);
 
 			/* Remove it from children. */
 			value = *m_min;
@@ -163,9 +165,9 @@ public:
 			}
 
 			/* Get new max element from children. */
-			uint64_t h = *m_aux->m_max;
+			uint64_t h = *m_aux->max();
 			assert(m_children[h] != nullptr);
-			*m_max = concat(*m_children[h]->m_max, h);
+			*m_max = concat(*m_children[h]->max(), h);
 
 			/* Remove it from children. */
 			value = *m_max;
@@ -204,9 +206,9 @@ public:
 				return *m_max;
 
 			/* Return min of children. */
-			uint64_t h = *m_aux->m_min;
+			uint64_t h = *m_aux->min();
 			assert(m_children[h] != nullptr);
-			return concat(*m_children[h]->m_min, h);
+			return concat(*m_children[h]->min(), h);
 		}
 
 		/* Find the successor in the corresponding child (if any). */
@@ -223,7 +225,7 @@ public:
 		if (sc) {
 			uint64_t h = *sc;
 			assert(m_children[h] != nullptr);
-			return concat(*m_children[h]->m_min, h);
+			return concat(*m_children[h]->min(), h);
 		}
 
 		/* Not in the corresponding nor next child, so it's max. */
@@ -247,9 +249,9 @@ public:
 				return *m_min;
 
 			/* Return max of children. */
-			uint64_t h = *m_aux->m_max;
+			uint64_t h = *m_aux->max();
 			assert(m_children[h] != nullptr);
-			return concat(*m_children[h]->m_max, h);
+			return concat(*m_children[h]->max(), h);
 		}
 
 		/* Find the predecessor in the corresponding child (if any). */
@@ -267,7 +269,7 @@ public:
 		if (sc) {
 			uint64_t h = *sc;
 			assert(m_children[h] != nullptr);
-			return concat(*m_children[h]->m_max, h);
+			return concat(*m_children[h]->max(), h);
 		}
 
 		/* Not in the corresponding nor preceding child, so it's min. */

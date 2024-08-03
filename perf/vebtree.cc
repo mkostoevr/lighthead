@@ -10,7 +10,7 @@ template<typename KeyGen>
 static void
 vebtree_contains(benchmark::State &state, size_t count, KeyGen kg)
 {
-	VebTree t(32);
+	VebTree<32> t;
 	for (size_t i = 0; i < count; i++)
 		t.insert(i);
 	for (auto _ : state)
@@ -23,7 +23,7 @@ template<typename KeyGen>
 static void
 vebtree_successor(benchmark::State &state, size_t count, KeyGen kg)
 {
-	VebTree t(32);
+	VebTree<32> t;
 	for (size_t i = 0; i < count; i++)
 		t.insert(i);
 	for (auto _ : state)
@@ -36,7 +36,7 @@ template<typename KeyGen>
 static void
 vebtree_predecessor(benchmark::State &state, size_t count, KeyGen kg)
 {
-	VebTree t(32);
+	VebTree<32> t;
 	for (size_t i = 0; i < count; i++)
 		t.insert(i);
 	for (auto _ : state)
@@ -49,7 +49,7 @@ template<typename KeyGen>
 static void
 vebtree_insert(benchmark::State &state, size_t count, KeyGen kg)
 {
-	VebTree t(32);
+	VebTree<32> t;
 	for (auto _ : state)
 		t.insert(kg());
 }
