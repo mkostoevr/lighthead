@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <cassert>
+#include <climits>
 #include <vector>
 #include <memory>
 #include <optional>
@@ -305,5 +306,87 @@ private:
 	concat(uint64_t l, uint64_t h)
 	{
 		return l | (h << (W / 2));
+	}
+};
+
+/*
+ * A small tree specialization using bit operations.
+ */
+template<>
+class VebTree<4> {
+	uint16_t m_elems;
+	std::set<uint64_t> m_ref;
+
+public:
+	VebTree(): m_elems(0) {}
+
+	bool
+	empty()
+	{
+		assert(m_ref.empty() == (m_elems == 0));
+		return m_elems == 0;
+	}
+
+	bool
+	contains(uint64_t value)
+	{
+		assert((m_ref.find(value) != m_ref.end()) == !!(m_elems & (1ULL << value)));
+		return m_elems & (1ULL << value);
+	}
+
+	void
+	insert(uint64_t value)
+	{
+		m_ref.insert(value);
+		m_elems |= (1ULL << value);
+		assert(contains(value));
+		assert(!empty());
+	}
+
+	bool
+	erase(uint64_t value)
+	{
+		m_ref.erase(value);
+		bool deleted = contains(value);
+		m_elems &= ~(1ULL << value);
+		assert(!contains(value));
+		return deleted;
+	}
+
+	std::optional<uint64_t>
+	successor(uint64_t value)
+	{
+		unsigned int next_bits = m_elems & ~((1ULL << value) - 1);
+		if (next_bits == 0)
+			return {};
+		return __builtin_ffs(next_bits) - 1;
+	}
+
+	std::optional<uint64_t>
+	predecessor(uint64_t value)
+	{
+		if (value == 0)
+			return {};
+		unsigned int prev_bits = m_elems & ((1ULL << (value - 1)) - 1);
+		if (prev_bits == 0)
+			return {};
+		return sizeof(prev_bits) * CHAR_BIT -
+		       __builtin_clz(prev_bits) - 1;
+	}
+
+	std::optional<uint64_t>
+	min()
+	{
+		if (m_elems == 0)
+			return {};
+		return __builtin_ffs(m_elems) - 1;
+	}
+
+	std::optional<uint64_t>
+	max() {
+		if (m_elems == 0)
+			return {};
+		return sizeof(unsigned int) * CHAR_BIT -
+		       __builtin_clz(m_elems) - 1;
 	}
 };
