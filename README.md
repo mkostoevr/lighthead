@@ -2,14 +2,6 @@
 
 An educational project for implementing various data structures and looking for their usecases.
 
-## Specification required
-
-- [ ] B-tree
-- [ ] Prefix tree
-- [ ] Van Emde-Boas tree
-- [ ] MinHash
-- [ ] Trie
-
 <!--
 
 #### Tarantool
@@ -118,6 +110,10 @@ An educational project for implementing various data structures and looking for 
 - [ ] Merge Tree
 - [ ] Прошитое двиочное дерево
 - [ ] Scapegoat Tree
+- [ ] B-tree
+- [ ] Prefix tree
+- [ ] MinHash
+- [ ] Trie
 - [ ] RTree
 - [ ] RR* Tree
 - [ ] Kukushka Hash
@@ -131,7 +127,6 @@ An educational project for implementing various data structures and looking for 
 - [ ] XOR filter
 - [ ] T-Digest
 - [ ] Skiplist
-- [ ] Trie
 - [ ] CTrie
 - [ ] Radix tree
 - [ ] Burst Trie
