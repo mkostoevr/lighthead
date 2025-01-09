@@ -307,3 +307,80 @@ private:
 		return l | (h << (W / 2));
 	}
 };
+
+template<>
+class VebTree<4>
+{
+	uint64_t m_mask;
+
+public:
+	VebTree()
+	: m_mask(0)
+	{}
+
+	bool
+	empty()
+	{
+		return m_mask == 0;
+	}
+
+	bool
+	contains(uint64_t value)
+	{
+		assert(value < (1ULL << 4));
+		return m_mask & (1ULL << value);
+	}
+
+	void
+	insert(uint64_t value)
+	{
+		assert(value < (1ULL << 4));
+		m_mask |= (1ULL << value);
+	}
+
+	bool
+	erase(uint64_t value)
+	{
+		assert(value < (1ULL << 4));
+		bool result = contains(value);
+		m_mask &= ~(1ULL << value);
+		assert(!contains(value));
+		return result;
+	}
+
+	std::optional<uint64_t>
+	successor(uint64_t value)
+	{
+		assert(value < (1ULL << 4));
+		uint64_t mask_after = m_mask & ~((1ULL << (value + 1)) - 1);
+		if (mask_after == 0)
+			return {};
+		return __builtin_ffs(mask_after) - 1;
+	}
+
+	std::optional<uint64_t>
+	predecessor(uint64_t value)
+	{
+		assert(value < (1ULL << 4));
+		uint64_t mask_prior = m_mask & ((1ULL << value) - 1);
+		if (mask_prior == 0)
+			return {};
+		return ((1ULL << 4) - 1) - (__builtin_clzl(mask_prior) - (64 - (1ULL << 4)));
+	}
+
+	std::optional<uint64_t>
+	min()
+	{
+		if (m_mask == 0)
+			return {};
+		return __builtin_ffs(m_mask) - 1;
+	}
+
+	std::optional<uint64_t>
+	max()
+	{
+		if (m_mask == 0)
+			return {};
+		return ((1ULL << 4) - 1) - (__builtin_clzl(m_mask) - (64 - (1ULL << 4)));
+	}
+};

@@ -49,12 +49,14 @@
 	}							\
 } while (false)
 
-int
-main()
+template <int W>
+void
+check_simple(size_t count)
 {
-	VebTree<32> tree;
+	note("W = %d", W);
+
+	VebTree<W> tree;
 	std::set<uint32_t> set;
-	const size_t count = 100000;
 
 	/* Insert some data. */
 	for (int i = 1; i < count; i++)
@@ -85,6 +87,10 @@ main()
 		test_insert(tree, set, i * 2);
 	for (int i = 1; i < count * 2; i++)
 		test_erase(tree, set, i);
+}
 
+int main() {
+	check_simple<4>(8);
+	check_simple<32>(100000);
 	return 0;
 }
