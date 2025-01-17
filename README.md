@@ -158,6 +158,8 @@ An educational project for implementing various data structures and looking for 
 - [ ] [Difference List](https://en.wikipedia.org/wiki/Difference_list)
 - [ ] [KD-Tree](https://en.wikipedia.org/wiki/K-d_tree)
 - [ ] [Priority Queue](https://en.wikipedia.org/wiki/Priority_queue) (on the [binary heap](https://www.geeksforgeeks.org/priority-queue-using-binary-heap/))
+- [ ] [Apache Avro](https://en.wikipedia.org/wiki/Apache_Avro)
+- [ ] [Apache Parquet](https://en.wikipedia.org/wiki/Apache_Parquet)
 
 #### Compression
 
