@@ -2,13 +2,15 @@
 
 An educational project for implementing various data structures and looking for their usecases.
 
-## Specification required
+## Roadmap
 
 - [ ] B-tree
 - [ ] Prefix tree
-- [ ] Van Emde-Boas tree
+- [x] Van Emde-Boas tree
 - [ ] MinHash
 - [ ] Trie
+- [ ] Fenwick Tree
+- [ ] Order Statistic Tree
 
 <!--
 
