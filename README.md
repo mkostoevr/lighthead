@@ -103,6 +103,7 @@ An educational project for implementing various data structures and looking for 
 - [ ] [SSE array sum](https://stackoverflow.com/questions/10930595/sse-instructions-to-add-all-elements-of-an-array)
 - [ ] [SIMD 8 horisontal sums](https://stackoverflow.com/questions/51274287/computing-8-horizontal-sums-of-eight-avx-single-precision-floating-point-vectors)
 - [ ] [SIMD atoi](https://stackoverflow.com/questions/35127060/how-to-implement-atoi-using-simd/35132718)
+- [ ] [Conflict-free replicated data types](https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type)
 
 #### Data structures and algorithms
 
