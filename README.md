@@ -114,6 +114,8 @@ An educational project for implementing various data structures and looking for 
 - [ ] Z-curve
 - [ ] ClickHouse Data Skipping Index
 - [ ] Radix sort
+- [ ] MSD Sort
+- [ ] LSD Sort
 - [ ] Binary search [optimization tricks](https://www.youtube.com/watch?v=1RIPMQQRBWk)
 - [ ] [Aho-Corasick Algorithm](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm)
 - [ ] Roaring Bitmap
@@ -139,6 +141,7 @@ An educational project for implementing various data structures and looking for 
 - [ ] Radix tree
 - [ ] Burst Trie
 - [ ] HAT-Trie
+- [ ] Cuckoo Trie
 - [ ] [Masstree](https://www.the-paper-trail.org/post/masstree-paper-notes/)
 - [ ] [Interval Tree](https://en.wikipedia.org/wiki/Interval_tree)
 - [ ] [Splay Tree](https://en.wikipedia.org/wiki/Splay_tree)
@@ -200,6 +203,7 @@ An educational project for implementing various data structures and looking for 
 
 - [ ] Hazelcast
 - [ ] Gridgain
+- [ ] YTSaurus
 - [ ] [SAP Hana](https://www.sap.com/central-asia-caucasus/products/data-cloud/hana/what-is-sap-hana.html)
 - [ ] [SingleStore](https://en.m.wikipedia.org/wiki/SingleStore)
 - [ ] Yugabyte
@@ -207,7 +211,11 @@ An educational project for implementing various data structures and looking for 
 - [ ] Redis Enterprise
 - [ ] Postgres Google Cloud SQL
 - [ ] DynamoDB
+- [ ] DuckDB
+- [ ] MongoDB
+- [ ] Teradata
 - [ ] Gigaspaces
+- [ ] FoundationDB
 - [ ] [VoltDB](https://en.wikipedia.org/wiki/VoltDB)
 - [ ] [Chronicle Map](https://github.com/OpenHFT/Chronicle-Map)
 - [ ] [RethinkDB](https://github.com/rethinkdb/rethinkdb)
