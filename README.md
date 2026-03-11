@@ -107,6 +107,7 @@ An educational project for implementing various data structures and looking for 
 
 #### Data structures and algorithms
 
+- [ ] MSD & LSD sort.
 - [ ] [Extendible Hashing](https://en.wikipedia.org/wiki/Extendible_hashing)
 - [ ] [Dash Hash](https://arxiv.org/abs/2003.07302)
 - [ ] [Very Lightweight Locking](https://www.cs.umd.edu/~abadi/papers/vldbj-vll.pdf)
