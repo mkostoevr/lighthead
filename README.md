@@ -25,6 +25,7 @@ An educational project for implementing various data structures and looking for 
 #### Benchmarking
 
 - [ ] [LLVM Benchmarking Tutorial](https://llvm.org/docs/Benchmarking.html)
+- [ ] [Common Trace Format](https://github.com/efficios/ctf/blob/master/common-trace-format-specification.md)
 
 #### System
 
